@@ -2,7 +2,8 @@
 
   namespace Shadow\Provider;
 
-  use Shadow;
+  use Shadow\Http\Middleware;
+  use Shadow\View\Twig\Maintainer as Mtner;
   use Illuminate\Support\ServiceProvider;
 
 
@@ -22,12 +23,12 @@
     public function register ($middleware = null) {
 
       if (! $middleware)
-        $middleware = [Shadow\Http\Middleware\Locale::class];
+        $middleware = [Middleware\Locale::class];
 
-      $app->middleware ($middleware);
+      $this->app->middleware ($middleware);
 
       // Load function
-      require_once '../View/Twig/Function/Locale.php';
+      require_once __DIR__ . '/../View/Twig/Function/Locale.php';
 
       // Add to Twig
       Mtner::addFunction ('locale_url', ['callback' => 'locale_url']);
