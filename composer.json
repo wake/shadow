@@ -14,7 +14,7 @@
       "Shadow\\": "src/"
     },
     "files": [
-      "src/Function/Locale.php"
+      "src/Bootstrap.php"
     ]
   },
   "autoload-dev": {

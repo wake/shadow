@@ -16,7 +16,7 @@
      * Functions
      *
      */
-    public $funcs = [];
+    public static $funcs = [];
 
 
     /**
@@ -24,7 +24,7 @@
      * Filters
      *
      */
-    public $filters = [];
+    public static $filters = [];
 
 
     /**
@@ -41,9 +41,8 @@
      * Add function
      *
      */
-    public function addFunction ($name, $func) {
-      $this->funcs[$name] = $func;
-      return $this;
+    public static function addFunction ($name, $func) {
+      static::$funcs[$name] = $func;
     }
 
 
@@ -52,9 +51,8 @@
      * Add filter
      *
      */
-    public function addFileter ($name, $filter) {
-      $this->filters[$name] = $filter;
-      return $this;
+    public static function addFileter ($name, $filter) {
+      static::$filters[$name] = $filter;
     }
 
 
@@ -63,8 +61,8 @@
      * Get functions
      *
      */
-    public function functions ($funcs) {
-      return $this->funcs + $funcs;
+    public static function functions ($funcs) {
+      return static::$funcs + $funcs;
     }
 
 
@@ -73,7 +71,7 @@
      * Get filters
      *
      */
-    public function filters ($filters) {
-      return $this->filters + $filters;
+    public static function filters ($filters) {
+      return static::$filters + $filters;
     }
   }
