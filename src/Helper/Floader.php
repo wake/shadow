@@ -21,6 +21,24 @@
 
     /**
      *
+     * Require once
+     *
+     */
+    static $once = true;
+
+
+    /**
+     *
+     * Require once
+     *
+     */
+    static function once ($enable = true) {
+      static::$once = $enable;
+    }
+
+
+    /**
+     *
      * Inject data
      *
      */
@@ -59,7 +77,7 @@
      *
      */
     static function load ($file, $path) {
-      extract (static::$pack) && file_exists ("$path/$file.php") && require_once "$path/$file.php";
+      extract (static::$pack) && file_exists ("$path/$file.php") && (static::$once ? require_once "$path/$file.php" : require "$path/$file.php");
     }
 
 
@@ -86,7 +104,7 @@
           static::autoload ("$path/$file", $recursive);
 
         else if (pathinfo ("$path/$file", PATHINFO_EXTENSION) == 'php')
-          require_once "$path/$file";
+          (static::$once ? require_once "$path/$file" : require "$path/$file");
       }
     }
   }
