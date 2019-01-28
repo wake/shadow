@@ -6,15 +6,14 @@
 
   /**
    *
-   * Load extends
+   * i18n / translator + Twig
    *
    */
-  require_once 'View/Twig/Function/Locale.php';
+  if (env ('APP_I18N_ENABLE', false)) {
 
+    // Load function
+    require_once 'View/Twig/Function/Locale.php';
 
-  /**
-   *
-   * Add to Twig functions
-   *
-   */
-  Mtner::addFunction ('locale_url', ['callback' => 'locale_url']);
+    // Add to Twig
+    Mtner::addFunction ('locale_url', ['callback' => 'locale_url']);
+  }
