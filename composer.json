@@ -12,7 +12,10 @@
   "autoload": {
     "psr-4": {
       "Shadow\\": "src/"
-    }
+    },
+    "files": [
+      "src/Function/Locale.php"
+    ]
   },
   "autoload-dev": {
     "classmap": [
