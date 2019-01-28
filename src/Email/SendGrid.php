@@ -43,6 +43,10 @@
      *
      */
     public __construct ($options) {
+
+      if (! isset ($options['key']) || $options['key'] == '')
+        thorw new Exception ('You need to assign SendGrid API key before using.');
+
       $this->options = $options;
     }
 
