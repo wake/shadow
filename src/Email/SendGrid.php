@@ -2,7 +2,7 @@
 
   namespace Shadow\Email;
 
-  use SendGrid;
+  use SendGrid as SG;
 
 
   /**
@@ -42,10 +42,10 @@
      * Construct
      *
      */
-    public __construct ($options) {
+    public function __construct ($options) {
 
       if (! isset ($options['key']) || $options['key'] == '')
-        thorw new Exception ('You need to assign SendGrid API key before using.');
+        throw new Exception ('You need to assign SendGrid API key before using.');
 
       $this->options = $options;
     }
@@ -56,7 +56,7 @@
      * Get mailer
      *
      */
-    public mailer () {
+    public function mailer () {
       return $this->mailer;
     }
 
@@ -66,9 +66,9 @@
      * Create
      *
      */
-    public create () {
+    public function create () {
 
-      $this->mailer = new SendGrid\Mail\Mail ();
+      $this->mailer = new SG\Mail\Mail ();
 
       return $this;
     }
@@ -79,12 +79,12 @@
      * From
      *
      */
-    public from ($emailOrArray, $name) {
+    public function from ($emailOrArray, $name = null) {
 
       $from = $emailOrArray;
 
       if (is_string ($emailOrArray))
-        $from[$emailOrArray] = $name;
+        $from = [$emailOrArray => $name];
 
       foreach ($from as $email => $name)
         $this->mailer->setFrom ($email, $name);
@@ -98,12 +98,12 @@
      * To
      *
      */
-    public to ($emailOrArray, $name) {
+    public function to ($emailOrArray, $name = null) {
 
       $to = $emailOrArray;
 
       if (is_string ($emailOrArray))
-        $to[$emailOrArray] = $name;
+        $to = [$emailOrArray => $name];
 
       foreach ($to as $email => $name)
         $this->mailer->addTo ($email, $name);
@@ -117,7 +117,7 @@
      * Subject
      *
      */
-    public subject ($subject) {
+    public function subject ($subject) {
 
       $this->mailer->setSubject ($subject);
 
@@ -130,7 +130,7 @@
      * Text
      *
      */
-    public text ($content) {
+    public function text ($content) {
       return $this->content ("text/plain", $content);
     }
 
@@ -140,7 +140,7 @@
      * HTML
      *
      */
-    public html ($content) {
+    public function html ($content) {
       return $this->content ("text/html", $content);
     }
 
@@ -150,7 +150,7 @@
      * Content
      *
      */
-    public content ($type, $content) {
+    public function content ($type, $content) {
 
       $this->mailer->addContent ($type, $content);
 
@@ -163,13 +163,13 @@
      * Send
      *
      */
-    public send () {
+    public function send () {
 
       // Generate SendGrid
-      $sg = new SendGrid ($this->options['key']);
+      $sg = new SG ($this->options['key']);
 
       // Send
-      $resp = $sg->send ($this->mailer);
+      $response = $sg->send ($this->mailer);
 
       $this->log[] = [
         'code'    => $response->statusCode (),

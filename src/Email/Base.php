@@ -34,7 +34,7 @@
      * Construct
      *
      */
-    public __construct ($options) {
+    public function __construct ($options) {
       $this->options = $options;
     }
 
@@ -44,7 +44,7 @@
      * Get mailer
      *
      */
-    public mailer () {
+    public function mailer () {
       return $this->mailer;
     }
 
@@ -54,7 +54,7 @@
      * Create
      *
      */
-    public create () {
+    public function create () {
 
       $this->mailer = new Object ();
 
@@ -67,7 +67,7 @@
      * From
      *
      */
-    public from ($emailOrArray, $name) {
+    public function from ($emailOrArray, $name) {
       return $this;
     }
 
@@ -77,7 +77,7 @@
      * To
      *
      */
-    public to ($emailOrArray, $name) {
+    public function to ($emailOrArray, $name) {
       return $this;
     }
 
@@ -87,7 +87,7 @@
      * Subject
      *
      */
-    public subject ($subject) {
+    public function subject ($subject) {
       return $this;
     }
 
@@ -97,7 +97,7 @@
      * Content
      *
      */
-    public content ($content) {
+    public function content ($content) {
       return $this;
     }
 
@@ -107,7 +107,7 @@
      * Send
      *
      */
-    public send () {
+    public function send () {
       return $this;
     }
   }
