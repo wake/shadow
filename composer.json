@@ -7,8 +7,8 @@
   "type": "library",
   "require": {
     "laravel/lumen-framework": "^5.7",
-    "wake/php-array-kit": "dev-master",
-    "wake/pager": "dev-master"
+    "wake/pager": "^0.1",
+    "wake/php-array-kit": "^0.4"
   },
   "autoload": {
     "psr-4": {
