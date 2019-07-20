@@ -2,7 +2,6 @@
   "name": "wake/shadow",
   "description": "A Lumen framework extends.",
   "keywords": ["framework", "lumen", "shine"],
-  "version": "v0.1.1",
   "license": "MIT",
   "type": "library",
   "require": {
