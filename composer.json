@@ -5,9 +5,9 @@
   "license": "MIT",
   "type": "library",
   "require": {
-    "laravel/lumen-framework": "^5.7",
-    "wake/pager": "^0.1",
-    "wake/php-array-kit": "^0.4"
+    "laravel/lumen-framework": "~5.7",
+    "wake/pager": "~0.1",
+    "wake/php-array-kit": "~0.4"
   },
   "autoload": {
     "psr-4": {
